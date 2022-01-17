@@ -1,4 +1,4 @@
-Keyboard Script Reader v1.0.0
+Keyboard Script Reader v1.0.1
 Support Contact:
 Discord - AhMing#2702
 Email - keeshengming@outlook.com
