@@ -18,7 +18,7 @@ public class StatusPanel extends JPanel {
         versionLabel.setHorizontalAlignment(JLabel.CENTER);
         scriptNameLabel = new JLabel("No script is loaded!");
         scriptNameLabel.setHorizontalAlignment(JLabel.CENTER);
-        hintLabel = new JLabel("Load script button to start!");
+        hintLabel = new JLabel("Load script to start!");
         hintLabel.setHorizontalAlignment(JLabel.CENTER);
 
         this.add(versionLabel);
@@ -28,7 +28,7 @@ public class StatusPanel extends JPanel {
 
     public void toggleHint(){
         if (scriptNameLabel.getText().equals("No script is loaded!")) {
-            hintLabel.setText("Load script button to start!");
+            hintLabel.setText("Load script to start!");
         } else {
             hintLabel.setText("Press BACKSPACE to start the script!");
         }
