@@ -1,0 +1,50 @@
+package app;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+
+import com.github.kwhat.jnativehook.GlobalScreen;
+import com.github.kwhat.jnativehook.NativeHookException;
+import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
+import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
+import components.ButtonPanel;
+import components.DefaultFrame;
+import components.StatusPanel;
+import objects.Queue;
+
+public class MainProgram {
+
+    // Scripting Variable
+    public static Runner runner;
+    public static boolean isLoaded = false;
+    public static Queue queue;
+
+    // Interface Variable
+    public static StatusPanel statusPanel;
+    public static ButtonPanel buttonPanel;
+
+    public MainProgram() {
+
+        queue = new Queue();
+        runner = new Runner();
+        statusPanel = new StatusPanel();
+        buttonPanel = new ButtonPanel();
+
+        DefaultFrame frame = new DefaultFrame();
+        frame.add(statusPanel, "North");
+        frame.add(buttonPanel, "South");
+
+    }
+
+    public static void main(String[] args) {
+        try {
+            new MainProgram();
+            GlobalScreen.registerNativeHook();
+            GlobalScreen.addNativeKeyListener(new NativeKeyEventActor());
+        } catch (NativeHookException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
