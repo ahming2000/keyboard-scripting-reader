@@ -1,29 +1,30 @@
 Keyboard Script Reader v1.0.1
-Support Contact:
-Discord - AhMing#2702
-Email - keeshengming@outlook.com
+GitHub: https://github.com/ahming2000/keyboard-scripting-reader
 
-You must install Java 1.8 before run the program! 
-You can download from https://java.com/
+[Support]
+Discord: AhMing#2702
+Email: keeshengming@outlook.com
 
-How to use the program?
-----------------------------
+[Pre-requisite]
+Java 8: https://java.com/
+
+[Guideline]
 Step 1: Create a txt file for writing the script.
 Step 2: Launcher the program and load the text file.
 Step 3: Press BACKSPACE (Right side of the =+ key) to start the script!
 
+[Script Syntax for Each Line]
+<action> <parameter>
 
-Script Syntax
-----------------------------
-<action> <key/sentence/duration(milliseconds)>
+List of action:
+"type", "press", "hold"
 
-List of action: "type", "press", "hold"
 Each action usage:
-type <sentence>
 press <key>
+type <sentence>
 hold <duration(milliseconds)>
 
-List of special key (All the special key must use "press" to type):
+[Key List (for "press" action)]
 Start Key: start, windows_key, window, windows
 Left Key: left
 Right Key: right
