@@ -10,18 +10,18 @@ public class NativeKeyEventActor implements NativeKeyListener {
     public void nativeKeyPressed(NativeKeyEvent nativeEvent) {
         // Toggle start and stop running the script
         int DEFAULT_START_BUTTON = KeyEvent.VK_BACK_SPACE;
-        if (nativeEvent.getRawCode() == DEFAULT_START_BUTTON && MainProgram.isLoaded) {
+        if (nativeEvent.getRawCode() == DEFAULT_START_BUTTON && MainProgram.isLoaded && !MainProgram.isLocked) {
             if (!MainProgram.runner.isAlive()) {
-                MainProgram.buttonPanel.setLoadButtonEnabled(false);
-                MainProgram.buttonPanel.setResetButtonEnabled(false);
                 MainProgram.runner = new Runner();
                 MainProgram.runner.start();
-                MainProgram.statusPanel.toggleRunningHint();
+                MainProgram.isRunning = true;
+                MainProgram.buttonPanel.run();
+                MainProgram.statusPanel.run();
             } else {
                 MainProgram.runner.interrupt();
-                MainProgram.buttonPanel.setResetButtonEnabled(true);
-                MainProgram.buttonPanel.setLoadButtonEnabled(true);
-                MainProgram.statusPanel.toggleRunningHint();
+                MainProgram.isRunning = false;
+                MainProgram.statusPanel.run();
+                MainProgram.buttonPanel.run();
             }
         }
     }

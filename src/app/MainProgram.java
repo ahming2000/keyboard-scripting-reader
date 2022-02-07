@@ -15,10 +15,14 @@ import objects.Queue;
 
 public class MainProgram {
 
-    // Scripting Variable
+    // Core Variable
     public static Runner runner;
-    public static boolean isLoaded = false;
     public static Queue queue;
+
+    // Core Boolean
+    public static boolean isRunning = false; // This flag is only for display (Do not decide Thread behaviour)
+    public static boolean isLoaded = false;
+    public static boolean isLocked = false;
 
     // Interface Variable
     public static StatusPanel statusPanel;

@@ -26,17 +26,24 @@ public class StatusPanel extends JPanel {
         this.add(hintLabel);
     }
 
-    public void toggleHint(){
-        if (scriptNameLabel.getText().equals("No script is loaded!")) {
-            hintLabel.setText("Load script to start!");
-        } else {
-            hintLabel.setText("Press BACKSPACE to start the script!");
+    public void load(String fileName){
+        if (MainProgram.isLoaded){
+            scriptNameLabel.setText("Loaded Script: " + fileName);
+            lock();
         }
     }
 
-    public void toggleRunningHint(){
-        if (MainProgram.runner.isAlive()) {
+    public void run(){
+        if (MainProgram.isRunning) {
             hintLabel.setText("YOUR SCRIPT IS CURRENTLY RUNNING!");
+        } else {
+            lock();
+        }
+    }
+
+    public void lock(){
+        if (MainProgram.isLocked){
+            hintLabel.setText("Script is disabled!");
         } else {
             hintLabel.setText("Press BACKSPACE to start the script!");
         }
@@ -45,10 +52,6 @@ public class StatusPanel extends JPanel {
     public void reset(){
         hintLabel.setText("Load script button to start!");
         scriptNameLabel.setText("No script is loaded!");
-    }
-
-    public void updateLoadedScript(String fileName){
-        scriptNameLabel.setText("Loaded Script: " + fileName);
     }
 
 }
