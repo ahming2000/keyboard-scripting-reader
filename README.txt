@@ -1,4 +1,5 @@
-Keyboard Script Reader v1.0.1
+Keyboard Script Reader v1.1.0
+Release Date: 7th Feb 2022
 GitHub: https://github.com/ahming2000/keyboard-scripting-reader
 
 [Support]
