@@ -11,6 +11,6 @@ public class DefaultFrame extends JFrame {
         this.setResizable(false);
         this.setVisible(true);
 
-        this.setSize(400, 250);
+        this.setSize(500, 300);
     }
 }
