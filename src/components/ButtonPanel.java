@@ -7,29 +7,50 @@ import app.Reset;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ButtonPanel extends JPanel {
 
     private final JButton loadButton;
     private final JButton resetButton;
     private final JButton toggleLockButton;
+    private final JButton toggleAlwaysOnTop;
 
     public ButtonPanel() {
-        this.setLayout(new FlowLayout());
+
+        this.setLayout(new GridLayout(2, 1));
         this.setBorder(BorderFactory.createEmptyBorder(25, 25, 25, 25));
 
+        JPanel top = new JPanel();
+        top.setLayout(new FlowLayout());
         loadButton = new JButton("Load Script");
         loadButton.addActionListener(new Loader());
         resetButton = new JButton("Reset");
         resetButton.addActionListener(new Reset());
         resetButton.setEnabled(false);
+        top.add(loadButton);
+        top.add(resetButton);
+
+        JPanel bottom = new JPanel();
+        bottom.setLayout(new FlowLayout());
         toggleLockButton = new JButton("Disable Script");
         toggleLockButton.addActionListener(new Locker());
         toggleLockButton.setEnabled(false);
+        toggleAlwaysOnTop = new JButton("Disable Always On Top");
+        toggleAlwaysOnTop.addActionListener(e -> {
+            MainProgram.frame.setAlwaysOnTop(!MainProgram.frame.isAlwaysOnTop());
+            if (MainProgram.frame.isAlwaysOnTop()) {
+                toggleAlwaysOnTop.setText("Disable Always On Top");
+            } else {
+                toggleAlwaysOnTop.setText("Enable Always On Top");
+            }
+        });
+        bottom.add(toggleLockButton);
+        bottom.add(toggleAlwaysOnTop);
 
-        this.add(loadButton);
-        this.add(resetButton);
-        this.add(toggleLockButton);
+        this.add(top);
+        this.add(bottom);
     }
 
     public void load(){

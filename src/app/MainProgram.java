@@ -25,6 +25,7 @@ public class MainProgram {
     public static boolean isLocked = false;
 
     // Interface Variable
+    public static DefaultFrame frame;
     public static StatusPanel statusPanel;
     public static ButtonPanel buttonPanel;
 
@@ -32,13 +33,12 @@ public class MainProgram {
 
         queue = new Queue();
         runner = new Runner();
+        frame = new DefaultFrame();
         statusPanel = new StatusPanel();
         buttonPanel = new ButtonPanel();
 
-        DefaultFrame frame = new DefaultFrame();
         frame.add(statusPanel, "North");
         frame.add(buttonPanel, "South");
-
     }
 
     public static void main(String[] args) {
