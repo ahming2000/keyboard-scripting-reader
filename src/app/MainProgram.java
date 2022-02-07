@@ -1,13 +1,7 @@
 package app;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
-
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
-import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
-import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 import components.ButtonPanel;
 import components.DefaultFrame;
 import components.StatusPanel;
