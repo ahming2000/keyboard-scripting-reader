@@ -46,10 +46,9 @@ public class Loader implements ActionListener {
                     MainProgram.queue.generate(command);
                 }
 
-                MainProgram.statusPanel.updateLoadedScript(fileName);
                 MainProgram.isLoaded = true;
-                MainProgram.statusPanel.toggleHint();
-                MainProgram.buttonPanel.setResetButtonEnabled(true);
+                MainProgram.statusPanel.load(fileName);
+                MainProgram.buttonPanel.load();
 
                 System.out.println("Action load successfully!");
                 System.out.println(MainProgram.queue.getActionList());
