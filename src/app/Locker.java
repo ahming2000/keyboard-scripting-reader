@@ -9,8 +9,8 @@ public class Locker implements ActionListener {
         Thread.currentThread().interrupt(); // safety
         if (!MainProgram.runner.isAlive()) {
             MainProgram.isLocked = !MainProgram.isLocked;
-            MainProgram.statusPanel.lock();
-            MainProgram.buttonPanel.lock();
+            MainProgram.statusPanel.checkLockStatus();
+            MainProgram.buttonPanel.checkLockStatus();
         }
     }
 }

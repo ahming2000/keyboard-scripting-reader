@@ -26,22 +26,22 @@ public class StatusPanel extends JPanel {
         this.add(hintLabel);
     }
 
-    public void load(String fileName){
+    public void checkLoadStatus(String fileName){
         if (MainProgram.isLoaded){
             scriptNameLabel.setText("Loaded Script: " + fileName);
-            lock();
+            checkLockStatus();
         }
     }
 
-    public void run(){
+    public void checkRunStatus(){
         if (MainProgram.isRunning) {
             hintLabel.setText("YOUR SCRIPT IS CURRENTLY RUNNING!");
         } else {
-            lock();
+            checkLockStatus();
         }
     }
 
-    public void lock(){
+    public void checkLockStatus(){
         if (MainProgram.isLocked){
             hintLabel.setText("Script is disabled!");
         } else {
@@ -50,7 +50,7 @@ public class StatusPanel extends JPanel {
     }
 
     public void reset(){
-        hintLabel.setText("Load script button to start!");
+        hintLabel.setText("Load script to start!");
         scriptNameLabel.setText("No script is loaded!");
     }
 
