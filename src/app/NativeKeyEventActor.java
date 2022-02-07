@@ -15,13 +15,13 @@ public class NativeKeyEventActor implements NativeKeyListener {
                 MainProgram.runner = new Runner();
                 MainProgram.runner.start();
                 MainProgram.isRunning = true;
-                MainProgram.buttonPanel.run();
-                MainProgram.statusPanel.run();
+                MainProgram.buttonPanel.checkRunStatus();
+                MainProgram.statusPanel.checkRunStatus();
             } else {
                 MainProgram.runner.interrupt();
                 MainProgram.isRunning = false;
-                MainProgram.statusPanel.run();
-                MainProgram.buttonPanel.run();
+                MainProgram.statusPanel.checkRunStatus();
+                MainProgram.buttonPanel.checkRunStatus();
             }
         }
     }

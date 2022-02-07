@@ -51,7 +51,7 @@ public class ButtonPanel extends JPanel {
         this.add(bottom);
     }
 
-    public void load(){
+    public void checkLoadStatus(){
         if (MainProgram.isLoaded) {
             resetButton.setEnabled(true);
             toggleLockButton.setEnabled(true);
@@ -61,7 +61,7 @@ public class ButtonPanel extends JPanel {
         }
     }
 
-    public void run(){
+    public void checkRunStatus(){
         if (MainProgram.isRunning) {
             loadButton.setEnabled(false);
             resetButton.setEnabled(false);
@@ -73,7 +73,7 @@ public class ButtonPanel extends JPanel {
         }
     }
 
-    public void lock(){
+    public void checkLockStatus(){
         if (MainProgram.isLocked) {
             toggleLockButton.setText("Enable Script");
         } else {

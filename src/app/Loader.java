@@ -47,8 +47,8 @@ public class Loader implements ActionListener {
                 }
 
                 MainProgram.isLoaded = true;
-                MainProgram.statusPanel.load(fileName);
-                MainProgram.buttonPanel.load();
+                MainProgram.statusPanel.checkLoadStatus(fileName);
+                MainProgram.buttonPanel.checkLoadStatus();
 
                 System.out.println("Action load successfully!");
                 System.out.println(MainProgram.queue.getActionList());
