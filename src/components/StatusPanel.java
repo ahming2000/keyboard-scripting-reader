@@ -14,7 +14,7 @@ public class StatusPanel extends JPanel {
         this.setLayout(new GridLayout(3, 1));
         this.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 
-        JLabel versionLabel = new JLabel("v1.1.0");
+        JLabel versionLabel = new JLabel("v1.2.0");
         versionLabel.setHorizontalAlignment(JLabel.CENTER);
         scriptNameLabel = new JLabel("No script is loaded!");
         scriptNameLabel.setHorizontalAlignment(JLabel.CENTER);

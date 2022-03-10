@@ -6,6 +6,7 @@ public class Queue {
 
     private ArrayList<Action> actionList = new ArrayList<>();
     private int offset;
+    private int repeatCount = 0;
 
     public void generate(String command){
         if (command.startsWith("type")){
@@ -24,6 +25,12 @@ public class Queue {
                 actionList.add(new Action("hold", duration, 0));
             } catch (NumberFormatException e) {
                 System.out.println(command + " is an invalid duration for hold! (Not integer)");
+            }
+        } else if (command.startsWith("repeat")) {
+            try {
+                this.repeatCount = Integer.parseInt(command.substring("repeat ".length()));
+            } catch (NumberFormatException e) {
+                System.out.println(command + " is an invalid number for repeating count! (Not integer)");
             }
         }
         else {
@@ -45,5 +52,13 @@ public class Queue {
 
     public void setOffset(int offset) {
         this.offset = offset;
+    }
+
+    public int getRepeatCount() {
+        return repeatCount;
+    }
+
+    public void setRepeatCount(int repeatCount) {
+        this.repeatCount = repeatCount;
     }
 }

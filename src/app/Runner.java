@@ -17,6 +17,14 @@ public class Runner extends Thread{
                 action.press();
             }
             Utility.pause(MainProgram.queue.getOffset());
+
+            if (count == MainProgram.queue.getRepeatCount()){
+                MainProgram.runner.interrupt();
+                MainProgram.isRunning = false;
+                MainProgram.statusPanel.checkRunStatus();
+                MainProgram.buttonPanel.checkRunStatus();
+                break; // If not set, default = 0
+            }
         }
 
         System.out.println("Script runner was stopped...");

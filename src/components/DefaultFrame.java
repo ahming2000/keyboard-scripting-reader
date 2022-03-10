@@ -8,7 +8,7 @@ public class DefaultFrame extends JFrame {
         this.setTitle("AhMing's Keyboard Script Reader");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setAlwaysOnTop(true);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setVisible(true);
 
         this.setSize(530, 300);
