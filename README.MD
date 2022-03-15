@@ -1,6 +1,6 @@
-# Keyboard Script Reader v1.2.0
+# Keyboard Script Reader v1.2.1
 
-Release Date: 10th March 2022
+Release Date: 15th March 2022
 
 ## Support
 Any suggestions feel free to contact me or make a pull request!

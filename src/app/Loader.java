@@ -23,6 +23,10 @@ public class Loader implements ActionListener {
         fileChooser.setFileFilter(new FileNameExtensionFilter("Script", "txt"));
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
+        // Lock the script
+        boolean orgIsLocked = MainProgram.isLocked;
+        MainProgram.isLocked = true;
+
         if (fileChooser.showOpenDialog(MainProgram.buttonPanel) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
 
@@ -58,6 +62,9 @@ public class Loader implements ActionListener {
                 System.out.println(fileName);
             }
         }
+
+        // Restore original isLocked status
+        MainProgram.isLocked = orgIsLocked;
 
     }
 }
