@@ -42,6 +42,7 @@ public class Loader implements ActionListener {
 
             try {
                 MainProgram.queue.getActionList().clear();
+                MainProgram.queue.setRepeatCount(0);
 
                 Scanner scanner = new Scanner(file);
 

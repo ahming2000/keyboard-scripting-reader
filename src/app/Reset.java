@@ -10,6 +10,7 @@ public class Reset implements ActionListener {
         if (!MainProgram.runner.isAlive()) {
             MainProgram.isLoaded = false;
             MainProgram.queue.getActionList().clear();
+            MainProgram.queue.setRepeatCount(0);
             MainProgram.statusPanel.reset();
             MainProgram.buttonPanel.reset();
         }
