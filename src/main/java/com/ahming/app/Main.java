@@ -1,15 +1,13 @@
-package app;
+package com.ahming.app;
 
+import com.ahming.components.ButtonPanel;
+import com.ahming.components.DefaultFrame;
+import com.ahming.components.StatusPanel;
+import com.ahming.objects.Queue;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
-import components.ButtonPanel;
-import components.DefaultFrame;
-import components.StatusPanel;
-import objects.Queue;
 
-public class MainProgram {
-
-    // Core Variable
+public class Main {
     public static Runner runner;
     public static Queue queue;
 
@@ -23,7 +21,7 @@ public class MainProgram {
     public static StatusPanel statusPanel;
     public static ButtonPanel buttonPanel;
 
-    public MainProgram() {
+    public Main() {
 
         queue = new Queue();
         runner = new Runner();
@@ -37,12 +35,11 @@ public class MainProgram {
 
     public static void main(String[] args) {
         try {
-            new MainProgram();
+            new Main();
             GlobalScreen.registerNativeHook();
             GlobalScreen.addNativeKeyListener(new NativeKeyEventActor());
         } catch (NativeHookException e) {
             e.printStackTrace();
         }
     }
-
 }

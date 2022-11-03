@@ -1,9 +1,9 @@
-package components;
+package com.ahming.components;
 
-import app.Loader;
-import app.Locker;
-import app.MainProgram;
-import app.Reset;
+import com.ahming.app.Loader;
+import com.ahming.app.Locker;
+import com.ahming.app.Main;
+import com.ahming.app.Reset;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,8 +37,8 @@ public class ButtonPanel extends JPanel {
         toggleLockButton.setEnabled(false);
         toggleAlwaysOnTop = new JButton("Disable Always On Top");
         toggleAlwaysOnTop.addActionListener(e -> {
-            MainProgram.frame.setAlwaysOnTop(!MainProgram.frame.isAlwaysOnTop());
-            if (MainProgram.frame.isAlwaysOnTop()) {
+            Main.frame.setAlwaysOnTop(!Main.frame.isAlwaysOnTop());
+            if (Main.frame.isAlwaysOnTop()) {
                 toggleAlwaysOnTop.setText("Disable Always On Top");
             } else {
                 toggleAlwaysOnTop.setText("Enable Always On Top");
@@ -52,7 +52,7 @@ public class ButtonPanel extends JPanel {
     }
 
     public void checkLoadStatus(){
-        if (MainProgram.isLoaded) {
+        if (Main.isLoaded) {
             resetButton.setEnabled(true);
             toggleLockButton.setEnabled(true);
         } else {
@@ -62,7 +62,7 @@ public class ButtonPanel extends JPanel {
     }
 
     public void checkRunStatus(){
-        if (MainProgram.isRunning) {
+        if (Main.isRunning) {
             loadButton.setEnabled(false);
             resetButton.setEnabled(false);
             toggleLockButton.setEnabled(false);
@@ -74,7 +74,7 @@ public class ButtonPanel extends JPanel {
     }
 
     public void checkLockStatus(){
-        if (MainProgram.isLocked) {
+        if (Main.isLocked) {
             toggleLockButton.setText("Enable Script");
         } else {
             toggleLockButton.setText("Disable Script");

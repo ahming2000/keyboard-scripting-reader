@@ -1,6 +1,6 @@
-package objects;
+package com.ahming.objects;
 
-import utilities.Utility;
+import com.ahming.utilities.Utility;
 
 import java.awt.*;
 

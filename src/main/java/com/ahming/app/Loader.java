@@ -1,4 +1,4 @@
-package app;
+package com.ahming.app;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -24,10 +24,10 @@ public class Loader implements ActionListener {
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
         // Lock the script
-        boolean orgIsLocked = MainProgram.isLocked;
-        MainProgram.isLocked = true;
+        boolean orgIsLocked = Main.isLocked;
+        Main.isLocked = true;
 
-        if (fileChooser.showOpenDialog(MainProgram.buttonPanel) == JFileChooser.APPROVE_OPTION) {
+        if (fileChooser.showOpenDialog(Main.buttonPanel) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
 
             fileName = file.getName();
@@ -41,22 +41,22 @@ public class Loader implements ActionListener {
             }
 
             try {
-                MainProgram.queue.getActionList().clear();
-                MainProgram.queue.setRepeatCount(0);
+                Main.queue.getActionList().clear();
+                Main.queue.setRepeatCount(0);
 
                 Scanner scanner = new Scanner(file);
 
                 while (scanner.hasNextLine()) {
                     String command = scanner.nextLine();
-                    MainProgram.queue.generate(command);
+                    Main.queue.generate(command);
                 }
 
-                MainProgram.isLoaded = true;
-                MainProgram.statusPanel.checkLoadStatus(fileName);
-                MainProgram.buttonPanel.checkLoadStatus();
+                Main.isLoaded = true;
+                Main.statusPanel.checkLoadStatus(fileName);
+                Main.buttonPanel.checkLoadStatus();
 
                 System.out.println("Action load successfully!");
-                System.out.println(MainProgram.queue.getActionList());
+                System.out.println(Main.queue.getActionList());
 
             } catch (FileNotFoundException ex) {
                 fileName = "File reading error";
@@ -65,7 +65,7 @@ public class Loader implements ActionListener {
         }
 
         // Restore original isLocked status
-        MainProgram.isLocked = orgIsLocked;
+        Main.isLocked = orgIsLocked;
 
     }
 }
