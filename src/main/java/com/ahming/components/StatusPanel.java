@@ -1,6 +1,6 @@
-package components;
+package com.ahming.components;
 
-import app.MainProgram;
+import com.ahming.app.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,14 +27,14 @@ public class StatusPanel extends JPanel {
     }
 
     public void checkLoadStatus(String fileName){
-        if (MainProgram.isLoaded){
+        if (Main.isLoaded){
             scriptNameLabel.setText("Loaded Script: " + fileName);
             checkLockStatus();
         }
     }
 
     public void checkRunStatus(){
-        if (MainProgram.isRunning) {
+        if (Main.isRunning) {
             hintLabel.setText("YOUR SCRIPT IS CURRENTLY RUNNING!");
         } else {
             checkLockStatus();
@@ -42,7 +42,7 @@ public class StatusPanel extends JPanel {
     }
 
     public void checkLockStatus(){
-        if (MainProgram.isLocked){
+        if (Main.isLocked){
             hintLabel.setText("Script is disabled!");
         } else {
             hintLabel.setText("Press BACKSPACE to start the script!");

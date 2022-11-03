@@ -1,4 +1,4 @@
-package components;
+package com.ahming.components;
 
 import javax.swing.*;
 

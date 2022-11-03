@@ -1,4 +1,4 @@
-package objects;
+package com.ahming.objects;
 
 import java.awt.event.KeyEvent;
 

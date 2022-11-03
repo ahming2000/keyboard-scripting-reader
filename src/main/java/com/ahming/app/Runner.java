@@ -1,7 +1,7 @@
-package app;
+package com.ahming.app;
 
-import objects.Action;
-import utilities.Utility;
+import com.ahming.objects.Action;
+import com.ahming.utilities.Utility;
 
 public class Runner extends Thread{
 
@@ -13,16 +13,16 @@ public class Runner extends Thread{
 
         while (!Thread.currentThread().isInterrupted()){
             System.out.println("Attempt " + ++count + " ...");
-            for (Action action: MainProgram.queue.getActionList()){
+            for (Action action: Main.queue.getActionList()){
                 action.press();
             }
-            Utility.pause(MainProgram.queue.getOffset());
+            Utility.pause(Main.queue.getOffset());
 
-            if (count == MainProgram.queue.getRepeatCount()){
-                MainProgram.runner.interrupt();
-                MainProgram.isRunning = false;
-                MainProgram.statusPanel.checkRunStatus();
-                MainProgram.buttonPanel.checkRunStatus();
+            if (count == Main.queue.getRepeatCount()){
+                Main.runner.interrupt();
+                Main.isRunning = false;
+                Main.statusPanel.checkRunStatus();
+                Main.buttonPanel.checkRunStatus();
                 break; // If not set, default = 0
             }
         }

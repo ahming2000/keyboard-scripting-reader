@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="KeyboardScriptReader:jar">
-    <output-path>$PROJECT_DIR$/out/jar</output-path>
-    <root id="archive" name="KeyboardScriptReader.jar">
-      <element id="module-output" name="KeyboardScriptReader" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../Libraries/jnativehook/jnativehook-2.2.1.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
