@@ -1,4 +1,4 @@
-package com.ahming.utilities;
+package com.ahming.utils;
 
 public class Utility {
 
