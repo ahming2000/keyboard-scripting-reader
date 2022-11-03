@@ -1,9 +1,6 @@
 package com.ahming.components;
 
-import com.ahming.app.Loader;
-import com.ahming.app.Locker;
-import com.ahming.app.Main;
-import com.ahming.app.Reset;
+import com.ahming.app.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,14 +33,7 @@ public class ButtonPanel extends JPanel {
         toggleLockButton.addActionListener(new Locker());
         toggleLockButton.setEnabled(false);
         toggleAlwaysOnTop = new JButton("Disable Always On Top");
-        toggleAlwaysOnTop.addActionListener(e -> {
-            Main.frame.setAlwaysOnTop(!Main.frame.isAlwaysOnTop());
-            if (Main.frame.isAlwaysOnTop()) {
-                toggleAlwaysOnTop.setText("Disable Always On Top");
-            } else {
-                toggleAlwaysOnTop.setText("Enable Always On Top");
-            }
-        });
+        toggleAlwaysOnTop.addActionListener(new AlwaysOnTopListener());
         bottom.add(toggleLockButton);
         bottom.add(toggleAlwaysOnTop);
 
@@ -51,7 +41,7 @@ public class ButtonPanel extends JPanel {
         this.add(bottom);
     }
 
-    public void checkLoadStatus(){
+    public void checkLoadStatus() {
         if (Main.isLoaded) {
             resetButton.setEnabled(true);
             toggleLockButton.setEnabled(true);
@@ -61,7 +51,7 @@ public class ButtonPanel extends JPanel {
         }
     }
 
-    public void checkRunStatus(){
+    public void checkRunStatus() {
         if (Main.isRunning) {
             loadButton.setEnabled(false);
             resetButton.setEnabled(false);
@@ -73,7 +63,7 @@ public class ButtonPanel extends JPanel {
         }
     }
 
-    public void checkLockStatus(){
+    public void checkLockStatus() {
         if (Main.isLocked) {
             toggleLockButton.setText("Enable Script");
         } else {
@@ -81,7 +71,15 @@ public class ButtonPanel extends JPanel {
         }
     }
 
-    public void reset(){
+    public void checkAlwaysOnTopStatus() {
+        if (Main.frame.isAlwaysOnTop()) {
+            toggleAlwaysOnTop.setText("Disable Always On Top");
+        } else {
+            toggleAlwaysOnTop.setText("Enable Always On Top");
+        }
+    }
+
+    public void reset() {
         loadButton.setEnabled(true);
         resetButton.setEnabled(false);
         toggleLockButton.setEnabled(false);

@@ -20,6 +20,8 @@ public class Loader implements ActionListener {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("."));
         fileChooser.setDialogTitle("Choose your script");
+        // TODO add false to set accept all file filter in next release
+        // fileChooser.setAcceptAllFileFilterUsed(false);
         fileChooser.setFileFilter(new FileNameExtensionFilter("Script", "txt"));
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
