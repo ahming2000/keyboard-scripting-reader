@@ -1,4 +1,4 @@
-package com.ahming.components;
+package com.ahming.ui.components;
 
 import com.ahming.app.Main;
 

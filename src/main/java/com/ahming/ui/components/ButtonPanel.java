@@ -1,4 +1,4 @@
-package com.ahming.components;
+package com.ahming.ui.components;
 
 import com.ahming.app.*;
 
@@ -10,7 +10,7 @@ public class ButtonPanel extends JPanel {
     private final JButton loadButton;
     private final JButton resetButton;
     private final JButton toggleLockButton;
-    private final JButton toggleAlwaysOnTop;
+    private final JButton toggleAlwaysOnTopButton;
 
     public ButtonPanel() {
 
@@ -32,10 +32,10 @@ public class ButtonPanel extends JPanel {
         toggleLockButton = new JButton("Disable Script");
         toggleLockButton.addActionListener(new Locker());
         toggleLockButton.setEnabled(false);
-        toggleAlwaysOnTop = new JButton("Disable Always On Top");
-        toggleAlwaysOnTop.addActionListener(new AlwaysOnTopListener());
+        toggleAlwaysOnTopButton = new JButton("Disable Always On Top");
+        toggleAlwaysOnTopButton.addActionListener(new AlwaysOnTopListener());
         bottom.add(toggleLockButton);
-        bottom.add(toggleAlwaysOnTop);
+        bottom.add(toggleAlwaysOnTopButton);
 
         this.add(top);
         this.add(bottom);
@@ -73,9 +73,9 @@ public class ButtonPanel extends JPanel {
 
     public void checkAlwaysOnTopStatus() {
         if (Main.frame.isAlwaysOnTop()) {
-            toggleAlwaysOnTop.setText("Disable Always On Top");
+            toggleAlwaysOnTopButton.setText("Disable Always On Top");
         } else {
-            toggleAlwaysOnTop.setText("Enable Always On Top");
+            toggleAlwaysOnTopButton.setText("Enable Always On Top");
         }
     }
 

@@ -1,7 +1,7 @@
 package com.ahming.app;
 
 import com.ahming.objects.Action;
-import com.ahming.utilities.Utility;
+import com.ahming.utils.Utility;
 
 public class Runner extends Thread{
 

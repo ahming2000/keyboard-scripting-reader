@@ -1,8 +1,8 @@
 package com.ahming.app;
 
-import com.ahming.components.ButtonPanel;
-import com.ahming.components.DefaultFrame;
-import com.ahming.components.StatusPanel;
+import com.ahming.ui.components.ButtonPanel;
+import com.ahming.ui.DefaultFrame;
+import com.ahming.ui.components.StatusPanel;
 import com.ahming.objects.Queue;
 import com.github.kwhat.jnativehook.GlobalScreen;
 import com.github.kwhat.jnativehook.NativeHookException;
