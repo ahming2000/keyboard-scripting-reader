@@ -1,0 +1,4 @@
+main:Tatsu Slots repeat:20
+
+type:t!slots
+press:enter offset:4500
