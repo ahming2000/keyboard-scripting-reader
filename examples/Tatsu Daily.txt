@@ -1,0 +1,16 @@
+main:Tastu Daily
+
+type:t!daily
+press:enter offset:4500
+
+type:t!tg clean
+press:enter offset:4500
+
+type:t!tg feed
+press:enter offset:4500
+
+type:t!tg play
+press:enter offset:4500
+
+type:t!quest 1
+press enter

@@ -1,0 +1,10 @@
+main:Tatsu Tg Walk repeat:5
+
+type:t!tg walk
+press:enter offset:4500
+
+type:t!tg walk
+press:enter offset:4500
+
+type:t!tg feed
+press:enter offset:4500

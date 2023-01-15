@@ -1,0 +1,4 @@
+main:Tastu Tg Train offset:4500
+
+type:t!tg train
+press:enter
