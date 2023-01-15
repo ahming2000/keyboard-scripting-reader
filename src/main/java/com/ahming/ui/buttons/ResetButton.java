@@ -10,9 +10,7 @@ public class ResetButton extends JButton {
         this.setText("Reset");
         this.setEnabled(StateController.canReset());
 
-        this.addActionListener(e -> {
-            StateController.reset();
-        });
+        this.addActionListener(e -> StateController.reset());
     }
 
 }

@@ -1,5 +1,6 @@
 package com.ahming.ui.buttons;
 
+import com.ahming.Main;
 import com.ahming.logics.StateController;
 
 import javax.swing.*;
@@ -7,7 +8,12 @@ import javax.swing.*;
 public class ToggleLockButton extends JButton {
 
     public ToggleLockButton() {
-        enabledText();
+        if (Main.status.isEnabled()) {
+            enabledText();
+        } else {
+            disabledText();
+        }
+        
         this.setEnabled(StateController.canToggleLock());
 
         this.addActionListener(e -> StateController.toggleLock());
