@@ -33,7 +33,6 @@ public class Loader implements ActionListener {
                 try {
                     Main.queue = load(file);
 
-
                     StateController.load(fileName);
                     System.out.println("Script Name: " + Main.queue.getScriptName());
 
@@ -75,27 +74,27 @@ public class Loader implements ActionListener {
         ArrayList<Action> actions = new ArrayList<>();
         Scanner scanner = new Scanner(file);
 
-        String header = scanner.nextLine();
-
-        if (header.startsWith("main:")) {
-            queue = loadHeader(queue, header);
-        } else {
-            Action action = generateAction(header);
-            if (action != null) actions.add(action);
-        }
-
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
-            Action action = generateAction(command);
-            if (action != null) actions.add(action);
+
+            if (command.startsWith("main:")) {
+                loadHeader(queue, command);
+            } else if (command.startsWith("loop_start:")) {
+                ArrayList<Action> loopedActions = generateLoopedActions(scanner, command);
+                actions.addAll(loopedActions);
+            } else {
+                Action action = generateAction(command);
+                if (action != null) actions.add(action);
+            }
         }
 
+        scanner.close();
         queue.setActions(actions);
 
         return queue;
     }
 
-    private Queue loadHeader(Queue queue, String header) {
+    private void loadHeader(Queue queue, String header) {
         String[] params = header.split(" ");
 
         for (int i = 0; i < params.length; i++) {
@@ -111,8 +110,32 @@ public class Loader implements ActionListener {
                 queue.setRepeatCount(getInteger(params[i], "repeat:"));
             }
         }
+    }
 
-        return queue;
+    private ArrayList<Action> generateLoopedActions(Scanner scanner, String loopHeader) {
+        int loopCount = getInteger(loopHeader, "loop_start:");
+        ArrayList<Action> actionsInBlock = new ArrayList<>();
+        ArrayList<Action> loopedActions = new ArrayList<>();
+
+        while (scanner.hasNextLine()) {
+            String command = scanner.nextLine();
+            Action action = generateAction(command);
+            if (action != null) actionsInBlock.add(action);
+
+            if (command.startsWith("loop_end")) {
+                if (loopCount <= 0) {
+                    return actionsInBlock;
+                } else {
+                    for (int i = 0; i < loopCount; i++) {
+                        loopedActions.addAll(actionsInBlock);
+                    }
+                }
+
+                break;
+            }
+        }
+
+        return loopedActions;
     }
 
     private Action generateAction(String command) {
