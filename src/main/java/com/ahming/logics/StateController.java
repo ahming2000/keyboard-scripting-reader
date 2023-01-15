@@ -13,6 +13,7 @@ public class StateController {
     public static void load(String name) {
         Main.status.setLoaded(true);
 
+        Main.gui.getButtonPanel().getLoadButton().setEnabled(true);
         Main.gui.getButtonPanel().getResetButton().setEnabled(true);
         Main.gui.getButtonPanel().getToggleLockButton().setEnabled(true);
 
@@ -36,6 +37,8 @@ public class StateController {
     }
 
     public static void run() {
+        Main.status.setRunning(true);
+
         Main.gui.getButtonPanel().getLoadButton().setEnabled(false);
         Main.gui.getButtonPanel().getResetButton().setEnabled(false);
         Main.gui.getButtonPanel().getToggleLockButton().setEnabled(false);
@@ -44,9 +47,11 @@ public class StateController {
     }
 
     public static void stop() {
-        Main.gui.getButtonPanel().getLoadButton().setEnabled(false);
-        Main.gui.getButtonPanel().getResetButton().setEnabled(false);
-        Main.gui.getButtonPanel().getToggleLockButton().setEnabled(false);
+        Main.status.setRunning(false);
+
+        Main.gui.getButtonPanel().getLoadButton().setEnabled(true);
+        Main.gui.getButtonPanel().getResetButton().setEnabled(true);
+        Main.gui.getButtonPanel().getToggleLockButton().setEnabled(true);
 
         if (Main.status.isEnabled()) {
             Main.gui.getStatusPanel().getHintLabel().enabledText();
@@ -115,11 +120,15 @@ public class StateController {
     }
 
     public static boolean canLoad() {
-        return !Main.runner.isAlive();
+        return !Main.status.isRunning();
     }
 
     public static boolean canRun(int key) {
-        return Main.status.isEnabled() && Main.status.isLoaded() && !Main.runner.isAlive() && Main.status.getStartButton() == key;
+        return Main.status.isEnabled() && Main.status.isLoaded() && !Main.status.isRunning() && Main.status.getStartButton() == key;
+    }
+
+    public static boolean canStop(int key) {
+        return Main.status.isRunning() && Main.status.getStopButton() == key;
     }
 
     public static boolean canToggleLock() {
@@ -127,7 +136,7 @@ public class StateController {
     }
 
     public static boolean canReset() {
-        return Main.status.isLoaded() && !Main.runner.isAlive();
+        return Main.status.isLoaded() && !Main.status.isRunning();
     }
 
 }
