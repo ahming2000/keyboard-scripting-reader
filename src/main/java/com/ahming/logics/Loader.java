@@ -33,7 +33,6 @@ public class Loader implements ActionListener {
                 try {
                     Main.queue = load(file);
 
-
                     StateController.load(fileName);
                     System.out.println("Script Name: " + Main.queue.getScriptName());
 
@@ -44,7 +43,6 @@ public class Loader implements ActionListener {
                     }
 
                     System.out.println("Action(s) loaded successfully!");
-                    System.out.println(Main.queue.getActions());
                 } catch (FileNotFoundException exception) {
                     StateController.failLoading();
                     System.out.println("File not found.");
@@ -75,27 +73,26 @@ public class Loader implements ActionListener {
         ArrayList<Action> actions = new ArrayList<>();
         Scanner scanner = new Scanner(file);
 
-        String header = scanner.nextLine();
-
-        if (header.startsWith("main:")) {
-            queue = loadHeader(queue, header);
-        } else {
-            Action action = generateAction(header);
-            if (action != null) actions.add(action);
-        }
-
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
-            Action action = generateAction(command);
-            if (action != null) actions.add(action);
+
+            if (command.contains("main:")) {
+                loadHeader(queue, command);
+            } else if (command.contains("loop_start:")) {
+                generateLoopedActions(scanner, actions, command);
+            } else {
+                Action action = generateAction(command);
+                if (action != null) actions.add(action);
+            }
         }
 
+        scanner.close();
         queue.setActions(actions);
 
         return queue;
     }
 
-    private Queue loadHeader(Queue queue, String header) {
+    private void loadHeader(Queue queue, String header) {
         String[] params = header.split(" ");
 
         for (int i = 0; i < params.length; i++) {
@@ -111,8 +108,37 @@ public class Loader implements ActionListener {
                 queue.setRepeatCount(getInteger(params[i], "repeat:"));
             }
         }
+    }
 
-        return queue;
+    private void generateLoopedActions(Scanner scanner, ArrayList<Action> actions, String loopHeader) {
+        System.out.println(loopHeader);
+        int loopCount = getInteger(loopHeader.replaceAll("[\t ]", ""), "loop_start:");
+        ArrayList<Action> actionsInBlock = new ArrayList<>();
+
+        while (scanner.hasNextLine()) {
+            String command = scanner.nextLine();
+
+            System.out.println("command: " + command);
+            if (command.contains("loop_start:")) {
+                generateLoopedActions(scanner, actionsInBlock, command);
+            }
+
+            Action action = generateAction(command);
+            if (action != null) actionsInBlock.add(action);
+            System.out.println("Actions in loop box: \n"+actionsInBlock);
+
+            if (command.contains("loop_end")) {
+                if (loopCount <= 0) {
+                    return;
+                } else {
+                    for (int i = 0; i < loopCount; i++) {
+                        actions.addAll(actionsInBlock);
+                    }
+                }
+
+                break;
+            }
+        }
     }
 
     private Action generateAction(String command) {
@@ -148,8 +174,6 @@ public class Loader implements ActionListener {
             }
         }
 
-        System.out.println(action);
-
         return action.getKeys() == null || action.getKeys().isEmpty() ? null : action;
     }
 
@@ -180,26 +204,4 @@ public class Loader implements ActionListener {
 
         return sentence;
     }
-
-    @Deprecated
-    private String getScriptName(String string) {
-        return string.substring("main:".length());
-    }
-
-
-    @Deprecated
-    private String getKey(String string) {
-        return string.substring("press:".length());
-    }
-
-    @Deprecated
-    private int getOffset(String string) {
-        return Integer.parseInt(string.substring("offset:".length()));
-    }
-
-    @Deprecated
-    private int getRepeatCount(String string) {
-        return Integer.parseInt(string.substring("repeat:".length()));
-    }
-
 }

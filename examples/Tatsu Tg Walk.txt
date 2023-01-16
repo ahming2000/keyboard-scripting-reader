@@ -1,10 +1,9 @@
-main:Tatsu Tg Walk repeat:5
+main:Tatsu Tg Walk repeat:10
 
-type:t!tg walk
-press:enter offset:4500
-
-type:t!tg walk
-press:enter offset:4500
+loop_start:2
+    type:t!tg walk
+    press:enter offset:4500
+loop_end
 
 type:t!tg feed
 press:enter offset:4500
