@@ -1,114 +1,161 @@
-# Keyboard Script Reader v1.2.2
+# Keyboard Script Reader
 
-Release Date: 15th March 2022
+> This is a keyboard script reader originally created for Tatsu Discord bot farming. <br>
+> [Tatsu Bot Website](https://tatsu.gg/)
+
+### Key Features
+
+- Keyboard scripting only
+- Describe repeat count for each command and whole script block
+- Describe offset/delay for each command and whole script block
+- Looping and nested looping
+- Script naming
+
+## Getting Started
+
+[Download From Here](https://github.com/ahming2000/keyboard-scripting-reader/releases)
+
+> You are required to install [Java 8 or later edition](https://java.com/) in order to use this program.
 
 ## Support
 Any suggestions feel free to contact me or make a pull request!
-* Discord: AhMing#2702
-* Email: keeshengming@outlook.com
-
-## Pre-requisite
-Java 8: https://java.com/
+> Discord: **AhMing#2702**<br>
+> Email: [keeshengming@outlook.com](mailto:keeshengming@outlook.com)
 
 ## Guideline
-- Step 1: Create a txt file for writing the script.
-- Step 2: Launcher the program and load the text file.
-- Step 3: Press BACKSPACE (Right side of the =+ key) to start the script!
 
-### Script Syntax for Each Line
-`<action> <parameter>`
+> Step 1: Create a text (`.txt`) file for writing the script. <br> 
+> Step 2: Launcher the program and load the text file. <br>
+> Step 3: Press `BACKSPACE` (Right side of the =+ key) to start the script!
 
-### List of action:
-`type`, `press`, `hold`, `repeat`
+## Script Syntax
 
-### Each action usage:
-`type <sentence>`
-`press <key>`
-`hold <duration(milliseconds)>`
-`repeat <count>`
+```
+type:<sentence> offset:<delay in milliseconds> repeat:<repeat count>
+```
 
-### Notice For Action `repeat`
-Note the repeat action will only read the last repeat action count, it is applied for whole script
+```
+press:<key syntax> offset:<delay in milliseconds> repeat:<repeat count>
+```
 
-### Key List (for `press` action)
-Start Key: start, windows_key, window, windows
+> - `offset:` and `repeat:` prefix are **optional**
+> - Offset has a default value of `100` milliseconds
+> - Repeat count has a default value of `1`, `0` repeat count will count as repeat 1 time
+> - Sentence can include space within the text you want to type
+> - You may refer to the [examples](https://github.com/ahming2000/keyboard-scripting-reader#examples) which also included in the application folder 
 
-Left Key: left
+### Header (Optional)
 
-Right Key: right
+```
+main:<script name> offset:<delay in milliseconds> repeat:<repeat count>
+```
 
-Up Key: up
+> - Script name can include space within the title you want to record
+> - `main:` prefix must arrange **at first** so the program can identify the header
+> - `offset:` and `repeat:` prefix are **optional**
+> - Offset has a default value of `100` milliseconds
+> - Repeat count over here is **repeat for all actions defined**
+> - Repeat count `0` is defined as **infinite loop**
+> - Repeat count has a default value of `0`
 
-Down Key: down
+### Looping
 
-F1 key: F1
+```
+loop_start:<loop count>
+    type:<sentence> offset:<delay in milliseconds> repeat:<repeat count>
+    press:<key syntax> offset:<delay in milliseconds> repeat:<repeat count>
 
-F2 key: F2
+    loop_start:<loop count>
+        type:<sentence> offset:<delay in milliseconds> repeat:<repeat count>
+        press:<key syntax> offset:<delay in milliseconds> repeat:<repeat count>
+    loop_end
+loop_end
+```
 
-F3 key: F3
+> - Loop count `0` is defined as **infinite loop**
+> - Loop count has a default value of `0`
 
-F4 key: F4
+## Examples
 
-F5 key: F5
+### Spam "I love you" every 3 seconds
 
-F6 key: F6
+```
+main:I Love You Spamming offset:3000
+type:I love you
+press:enter
+```
 
-F7 key: F7
+### Spam copied text
 
-F8 key: F8
+```
+press:paste
+press:enter offset:500
+```
 
-F9 key: F9
+### Tatsu pet train 20 times and walk 10 times and pause for 600 seconds (Infinite Loop)
 
-F10 key: F10
+```
+main:Tastu Test offset:600000
 
-F11 key: F11
+loop_start:20
+    type:t!tg train
+    press:enter offset:4500
+loop_end
 
-F12 key: F12
+loop_start:5
+    loop_start:2
+        type:t!tg walk
+        press:enter offset:4500
+    loop_end
+    
+    type:t!tg feed
+    press:enter offset:4500
+loop_end
+```
 
-Copy key: copy, ctrl+c
+## Appendix
 
-Cut key: cut, ctrl+x
+### Key List (for `press:` prefix)
 
-Paste key: paste, ctrl+v
-
-Escape key: esc
-
-Enter key: enter, return, \n
-
-Space key: space (available for type)
-
-Control key: ctrl
-
-Shift key: shift
-
-Alt key: alt
-
-Tab key: tab
-
-Context Menu key: context_menu
-
-Number Lock key: num, numlk, num_lock
-
-Caps Lock key: caps, capslk, caps_lock
-
-Scroll Lock key: scr, scrlk, scroll_lock
-
-Number Pad 1: num1
-
-Number Pad 2: num2
-
-Number Pad 3: num3
-
-Number Pad 4: num4
-
-Number Pad 5: num5
-
-Number Pad 6: num6
-
-Number Pad 7: num7
-
-Number Pad 8: num8
-
-Number Pad 9: num9
-
-Number Pad 0: num0
+| Key Name     | Key Syntax                               |
+|--------------|------------------------------------------|
+| Start        | `start` `windows_key` `window` `windows` |
+| Left         | `left`                                   |
+| Up           | `up`                                     |
+| Down         | `down`                                   |
+| F1           | `F1`                                     |
+| F2           | `F2`                                     |
+| F3           | `F3`                                     |
+| F4           | `F4`                                     |
+| F5           | `F5`                                     |
+| F6           | `F6`                                     |
+| F7           | `F7`                                     |
+| F8           | `F8`                                     |
+| F9           | `F9`                                     |
+| F10          | `F10`                                    |
+| F11          | `F11`                                    |
+| F12          | `F12`                                    |
+| Copy         | `copy` `ctrl+c`                          |
+| Cut          | `cut` `ctrl+x`                           |
+| Paste        | `paste` `ctrl+v`                         |
+| Escape       | `esc`                                    |
+| Enter        | `enter` `return` `\n`                    |
+| Space        | `space`                                  |
+| Control      | `ctrl`                                   |
+| Shift        | `shift`                                  |
+| Alt          | `alt`                                    |
+| Tab          | `tab`                                    |
+| Context Menu | `context_menu`                           |
+| Number Lock  | `num` `numlk` `num_lock`                 |
+| Caps Lock    | `caps` `capslk` `caps_lock`              |
+| Scroll Lock  | `scr` `scrlk` `scroll_lock`              |
+| Number Pad 1 | `num1`                                   |
+| Number Pad 2 | `num2`                                   |
+| Number Pad 3 | `num3`                                   |
+| Number Pad 4 | `num4`                                   |
+| Number Pad 5 | `num5`                                   |
+| Number Pad 6 | `num6`                                   |
+| Number Pad 7 | `num7`                                   |
+| Number Pad 8 | `num8`                                   |
+| Number Pad 9 | `num9`                                   |
+| Number Pad 0 | `num0`                                   |
