@@ -203,26 +203,4 @@ public class Loader implements ActionListener {
 
         return sentence;
     }
-
-    @Deprecated
-    private String getScriptName(String string) {
-        return string.substring("main:".length());
-    }
-
-
-    @Deprecated
-    private String getKey(String string) {
-        return string.substring("press:".length());
-    }
-
-    @Deprecated
-    private int getOffset(String string) {
-        return Integer.parseInt(string.substring("offset:".length()));
-    }
-
-    @Deprecated
-    private int getRepeatCount(String string) {
-        return Integer.parseInt(string.substring("repeat:".length()));
-    }
-
 }
