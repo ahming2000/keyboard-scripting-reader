@@ -1,0 +1,41 @@
+main:Tatsu Mission repeat:1
+
+type:t!daily
+press:enter offset:4500
+
+type:t!tg clean
+press:enter offset:4500
+
+type:t!tg feed
+press:enter offset:4500
+
+type:t!tg play
+press:enter offset:4500
+
+loop_start:10
+    type:t!slots
+    press:enter offset:4500
+loop_end
+
+loop_start:3
+    loop_start:2
+        type:t!tg walk
+        press:enter offset:4500
+    loop_end
+
+    type:t!tg feed
+    press:enter offset:4500
+loop_end
+
+loop_start:2
+    press:paste
+    press:enter offset:4500
+loop_end
+
+loop_start:100
+    type:t!tg train
+    press:enter offset:4500
+loop_end
+
+type:t!quest claim
+press:enter
