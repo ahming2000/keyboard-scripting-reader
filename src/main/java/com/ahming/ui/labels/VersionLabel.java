@@ -5,7 +5,7 @@ import javax.swing.*;
 public class VersionLabel extends JLabel {
 
     public VersionLabel() {
-        this.setText("v1.2.2");
+        this.setText("v2.0.0");
         this.setHorizontalAlignment(JLabel.CENTER);
     }
 
