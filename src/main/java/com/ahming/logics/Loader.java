@@ -43,7 +43,6 @@ public class Loader implements ActionListener {
                     }
 
                     System.out.println("Action(s) loaded successfully!");
-                    System.out.println(Main.queue.getActions());
                 } catch (FileNotFoundException exception) {
                     StateController.failLoading();
                     System.out.println("File not found.");
@@ -77,11 +76,10 @@ public class Loader implements ActionListener {
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
 
-            if (command.startsWith("main:")) {
+            if (command.contains("main:")) {
                 loadHeader(queue, command);
-            } else if (command.startsWith("loop_start:")) {
-                ArrayList<Action> loopedActions = generateLoopedActions(scanner, command);
-                actions.addAll(loopedActions);
+            } else if (command.contains("loop_start:")) {
+                generateLoopedActions(scanner, actions, command);
             } else {
                 Action action = generateAction(command);
                 if (action != null) actions.add(action);
@@ -112,30 +110,35 @@ public class Loader implements ActionListener {
         }
     }
 
-    private ArrayList<Action> generateLoopedActions(Scanner scanner, String loopHeader) {
-        int loopCount = getInteger(loopHeader, "loop_start:");
+    private void generateLoopedActions(Scanner scanner, ArrayList<Action> actions, String loopHeader) {
+        System.out.println(loopHeader);
+        int loopCount = getInteger(loopHeader.replaceAll("[\t ]", ""), "loop_start:");
         ArrayList<Action> actionsInBlock = new ArrayList<>();
-        ArrayList<Action> loopedActions = new ArrayList<>();
 
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
+
+            System.out.println("command: " + command);
+            if (command.contains("loop_start:")) {
+                generateLoopedActions(scanner, actionsInBlock, command);
+            }
+
             Action action = generateAction(command);
             if (action != null) actionsInBlock.add(action);
+            System.out.println("Actions in loop box: \n"+actionsInBlock);
 
-            if (command.startsWith("loop_end")) {
+            if (command.contains("loop_end")) {
                 if (loopCount <= 0) {
-                    return actionsInBlock;
+                    return;
                 } else {
                     for (int i = 0; i < loopCount; i++) {
-                        loopedActions.addAll(actionsInBlock);
+                        actions.addAll(actionsInBlock);
                     }
                 }
 
                 break;
             }
         }
-
-        return loopedActions;
     }
 
     private Action generateAction(String command) {
@@ -170,8 +173,6 @@ public class Loader implements ActionListener {
                 action.setKeys(keys); // If type and press present in the same line, only the latest type or press will be the recorded
             }
         }
-
-        System.out.println(action);
 
         return action.getKeys() == null || action.getKeys().isEmpty() ? null : action;
     }
