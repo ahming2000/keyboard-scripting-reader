@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Action {
 
     private ArrayList<Key> keys;
+    private String name;
     private int offsetMs;
     private int repeatCount;
 
@@ -20,6 +21,14 @@ public class Action {
 
     public void setKeys(ArrayList<Key> keys) {
         this.keys = keys;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getOffsetMs() {

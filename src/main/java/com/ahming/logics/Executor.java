@@ -1,5 +1,6 @@
 package com.ahming.logics;
 
+import com.ahming.Main;
 import com.ahming.states.Action;
 import com.ahming.states.Key;
 import com.ahming.states.Queue;
@@ -52,6 +53,8 @@ public class Executor {
             if (runner.isInterrupted()) {
                 return;
             }
+
+            Main.gui.getStatusPanel().getHintLabel().runningText(action.getName());
 
             for (Key key : action.getKeys()) {
                 click(runner, key);
