@@ -158,6 +158,7 @@ public class Loader implements ActionListener {
 
             if (params[i].startsWith("type:")) {
                 String sentence = getSentence(params, i, "type:");
+                action.setName(sentence);
                 ArrayList<Key> keys = new ArrayList<>();
 
                 for (char c : sentence.toCharArray()) {
@@ -169,7 +170,9 @@ public class Loader implements ActionListener {
 
             if (params[i].startsWith("press:")) {
                 ArrayList<Key> keys = new ArrayList<>();
-                keys.add(new Key(getWord(params[i], "press:")));
+                String word = getWord(params[i], "press:");
+                action.setName(word);
+                keys.add(new Key(word));
                 action.setKeys(keys); // If type and press present in the same line, only the latest type or press will be the recorded
             }
         }
