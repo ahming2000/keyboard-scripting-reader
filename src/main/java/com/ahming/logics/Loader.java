@@ -36,7 +36,7 @@ public class Loader implements ActionListener {
                     StateController.load(fileName);
                     System.out.println("Script Name: " + Main.queue.getScriptName());
 
-                    if (Main.queue.getScriptName().equals("")) {
+                    if (Main.queue.getScriptName().isEmpty()) {
                         StateController.load(fileName);
                     } else {
                         StateController.load(Main.queue.getScriptName());
