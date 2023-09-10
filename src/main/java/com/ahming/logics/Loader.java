@@ -153,6 +153,9 @@ public class Loader implements ActionListener {
             command = command.substring(0, command.indexOf("#"));
         }
 
+        // Skip the space or tab front and back
+        command = command.trim();
+
         String[] params = command.split(" ");
 
         for (int i = 0; i < params.length; i++) {
