@@ -65,6 +65,7 @@ public class Executor {
             }
 
             if (i == action.getRepeatCount()) {
+                Main.gui.getStatusPanel().getHintLabel().runningText(null);
                 runner.wait(action.getOffsetMs());
             }
         }
