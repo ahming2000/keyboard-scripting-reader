@@ -22,7 +22,17 @@ public class HintLabel extends JLabel {
     }
 
     public void runningText() {
-        this.setText("YOUR TASK IS CURRENTLY RUNNING!");
+        this.setText("<html><div align='center'>" +
+                "<font color='red'>YOUR TASK IS CURRENTLY RUNNING!</font>" +
+                "</div></html>");
+    }
+
+    public void runningText(String currentLine) {
+        this.setText("<html><div align='center'>" +
+                "<font color='red'>YOUR TASK IS CURRENTLY RUNNING!</font>" +
+                "<br>Current command: " +
+                (currentLine == null ? "<font color='gray'>Pausing...</font>" : currentLine) +
+                "</div></html>");
     }
 
 }
