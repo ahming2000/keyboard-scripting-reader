@@ -1,0 +1,7 @@
+main:Pet EXP Farming offset:660000 # Run infinite times
+
+# This is measured so that you can farm with this script for 5 hours
+loop_start:20
+    type:t!tg train
+    press:enter offset:4500
+loop_end
