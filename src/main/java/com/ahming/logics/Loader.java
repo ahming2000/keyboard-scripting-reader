@@ -74,7 +74,7 @@ public class Loader implements ActionListener {
         Scanner scanner = new Scanner(file);
 
         while (scanner.hasNextLine()) {
-            String command = scanner.nextLine();
+            String command = fineTuningCommand(scanner.nextLine());
 
             if (command.contains("main:")) {
                 loadHeader(queue, command);
@@ -115,7 +115,7 @@ public class Loader implements ActionListener {
         ArrayList<Action> actionsInBlock = new ArrayList<>();
 
         while (scanner.hasNextLine()) {
-            String command = scanner.nextLine();
+            String command = fineTuningCommand(scanner.nextLine());
 
             if (command.contains("loop_start:")) {
                 generateLoopedActions(scanner, actionsInBlock, command);
@@ -141,17 +141,6 @@ public class Loader implements ActionListener {
     private Action generateAction(String command) {
         Action action = new Action();
         command = command.toLowerCase();
-
-        // Skip checking default comment syntax
-        if (command.startsWith("#")) return null;
-
-        // Skip comment that inline within the script line
-        if (command.contains("#")) {
-            command = command.substring(0, command.indexOf("#"));
-        }
-
-        // Skip the space or tab front and back
-        command = command.trim();
 
         String[] params = command.split(" ");
 
@@ -211,5 +200,15 @@ public class Loader implements ActionListener {
         }
 
         return sentence;
+    }
+
+    private String fineTuningCommand(String command) {
+        if (command.contains("#")) {
+            // Skip comment that inline within the script line
+            command = command.substring(0, command.indexOf("#"));
+        }
+
+        // Skip the space or tab front and back
+        return command.trim();
     }
 }
