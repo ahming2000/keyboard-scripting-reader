@@ -1,4 +1,0 @@
-main:Tatsu Slots
-
-type:t!slots
-press:enter offset:4500

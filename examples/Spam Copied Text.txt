@@ -1,4 +1,0 @@
-main:Spam Copied Text offset:1000
-
-press:paste
-press:enter

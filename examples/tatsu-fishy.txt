@@ -1,0 +1,4 @@
+main:Tatsu Fishy # Run infinite times
+
+type:t!fishy
+press:enter offset:29000

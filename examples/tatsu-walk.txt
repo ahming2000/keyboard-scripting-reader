@@ -1,4 +1,4 @@
-main:Tatsu Tg Walk repeat:10
+main:Tatsu Tg Walk repeat:10 # Replace the repeat count you want here
 
 loop_start:2
     type:t!tg walk

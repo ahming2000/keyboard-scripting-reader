@@ -36,7 +36,7 @@ public class Loader implements ActionListener {
                     StateController.load(fileName);
                     System.out.println("Script Name: " + Main.queue.getScriptName());
 
-                    if (Main.queue.getScriptName().equals("")) {
+                    if (Main.queue.getScriptName().isEmpty()) {
                         StateController.load(fileName);
                     } else {
                         StateController.load(Main.queue.getScriptName());
@@ -74,7 +74,7 @@ public class Loader implements ActionListener {
         Scanner scanner = new Scanner(file);
 
         while (scanner.hasNextLine()) {
-            String command = scanner.nextLine();
+            String command = fineTuningCommand(scanner.nextLine());
 
             if (command.contains("main:")) {
                 loadHeader(queue, command);
@@ -111,21 +111,18 @@ public class Loader implements ActionListener {
     }
 
     private void generateLoopedActions(Scanner scanner, ArrayList<Action> actions, String loopHeader) {
-        System.out.println(loopHeader);
         int loopCount = getInteger(loopHeader.replaceAll("[\t ]", ""), "loop_start:");
         ArrayList<Action> actionsInBlock = new ArrayList<>();
 
         while (scanner.hasNextLine()) {
-            String command = scanner.nextLine();
+            String command = fineTuningCommand(scanner.nextLine());
 
-            System.out.println("command: " + command);
             if (command.contains("loop_start:")) {
                 generateLoopedActions(scanner, actionsInBlock, command);
             }
 
             Action action = generateAction(command);
             if (action != null) actionsInBlock.add(action);
-            System.out.println("Actions in loop box: \n"+actionsInBlock);
 
             if (command.contains("loop_end")) {
                 if (loopCount <= 0) {
@@ -206,5 +203,15 @@ public class Loader implements ActionListener {
         }
 
         return sentence;
+    }
+
+    private String fineTuningCommand(String command) {
+        if (command.contains("#")) {
+            // Skip comment that inline within the script line
+            command = command.substring(0, command.indexOf("#"));
+        }
+
+        // Skip the space or tab front and back
+        return command.trim();
     }
 }
