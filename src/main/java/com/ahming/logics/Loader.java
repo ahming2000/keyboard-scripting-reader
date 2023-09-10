@@ -143,7 +143,7 @@ public class Loader implements ActionListener {
 
     private Action generateAction(String command) {
         Action action = new Action();
-        command = command.toLowerCase();
+        command = command.toLowerCase().trim();
 
         String[] params = command.split(" ");
 
