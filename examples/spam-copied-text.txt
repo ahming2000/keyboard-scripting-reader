@@ -1,0 +1,6 @@
+main:Spam Copied Text offset:1000 # Run infinite times
+
+# Please copy the text you want to spam first
+
+press:paste
+press:enter
