@@ -148,6 +148,11 @@ public class Loader implements ActionListener {
         // Skip checking default comment syntax
         if (command.startsWith("#")) return null;
 
+        // Skip comment that inline within the script line
+        if (command.contains("#")) {
+            command = command.substring(0, command.indexOf("#"));
+        }
+
         String[] params = command.split(" ");
 
         for (int i = 0; i < params.length; i++) {
