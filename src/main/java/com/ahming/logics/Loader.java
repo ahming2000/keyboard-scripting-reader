@@ -111,21 +111,18 @@ public class Loader implements ActionListener {
     }
 
     private void generateLoopedActions(Scanner scanner, ArrayList<Action> actions, String loopHeader) {
-        System.out.println(loopHeader);
         int loopCount = getInteger(loopHeader.replaceAll("[\t ]", ""), "loop_start:");
         ArrayList<Action> actionsInBlock = new ArrayList<>();
 
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
 
-            System.out.println("command: " + command);
             if (command.contains("loop_start:")) {
                 generateLoopedActions(scanner, actionsInBlock, command);
             }
 
             Action action = generateAction(command);
             if (action != null) actionsInBlock.add(action);
-            System.out.println("Actions in loop box: \n"+actionsInBlock);
 
             if (command.contains("loop_end")) {
                 if (loopCount <= 0) {
