@@ -17,7 +17,7 @@ public class MainGUI extends JFrame {
         this.setAlwaysOnTop(Main.status.isAlwaysOnTop());
         this.setResizable(false);
         this.setVisible(true);
-        this.setSize(530, 300);
+        this.setSize(530, 340);
 
         statusPanel = new StatusPanel();
         buttonPanel = new ButtonPanel();
