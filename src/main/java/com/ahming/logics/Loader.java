@@ -145,6 +145,9 @@ public class Loader implements ActionListener {
         Action action = new Action();
         command = command.toLowerCase();
 
+        // Skip checking default comment syntax
+        if (command.startsWith("#")) return null;
+
         String[] params = command.split(" ");
 
         for (int i = 0; i < params.length; i++) {
